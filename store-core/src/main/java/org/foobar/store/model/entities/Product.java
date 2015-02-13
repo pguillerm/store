@@ -56,8 +56,8 @@ public class Product implements Identifiable<Long> {
 
     private Double            price;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Category.class)
-    @JoinColumn(name = "CATEGORY_ID")
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID", nullable = false)
     private Category          category;
 
     // =========================================================================

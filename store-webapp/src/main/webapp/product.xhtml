@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	id="home"
+	template="/layout/main.xhtml">
+
+	<ui:define name="title">Home</ui:define>
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="content_head">
+		Product
+		<h2>
+			<h:outputText value="#{productAction.uid}" />
+		</h2>
+	</ui:define>
+	
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="main-content">
+	
+		
+	
+	
+	
+	
+	</ui:define>
+	
+	
+</ui:composition>

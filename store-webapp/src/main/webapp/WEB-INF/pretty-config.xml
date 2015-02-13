@@ -1,0 +1,72 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+
+    <!--======================================================================== 
+    = REWRITE
+    =========================================================================-->
+    <rewrite match="^/([\w\d/-_]+)([.]{1}xhtml)$" substitute="/$1" redirect="301" />
+    
+     <rewrite match="^/index$" substitute="/"  />
+     
+     <rewrite match="^/(.*)(/)$" substitute="/$1"  />
+   
+     
+    <!--======================================================================== 
+    = ADMIN
+    =========================================================================-->
+<url-mapping id="admin">
+        <pattern value="/adminstrator" />
+        <view-id value="/adminstrator/admin.xhtml" />
+    </url-mapping>
+    
+
+    <url-mapping id="admin">
+        <pattern value="/admin" />
+        <view-id value="/adminstrator/admin.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="admin_addCategories">
+        <pattern value="/admin/addCategories" />
+        <view-id value="/adminstrator/addCategories.xhtml" />
+    </url-mapping>
+    
+    <url-mapping id="admin_addProduct">
+        <pattern value="/admin/addProduct" />
+        <view-id value="/adminstrator/addProduct.xhtml" />
+    </url-mapping>
+
+
+    <url-mapping id="admin_showProducts">
+        <pattern value="/admin/showProducts" />
+        <view-id value="/adminstrator/showProducts.xhtml" />
+    </url-mapping>
+
+
+    <!--======================================================================== 
+    = GUEST
+    =========================================================================-->
+    <url-mapping id="home">
+        <pattern value="/home" />
+        <view-id value="/home.xhtml" />
+    </url-mapping>
+    
+    
+     <url-mapping id="category">
+        <pattern value="/home/#{categoryAction.category}" />
+        <view-id value="/category.xhtml" />
+    </url-mapping>
+    
+
+    
+    <url-mapping id="product">
+        <pattern value="/home/#{categoryAction.category}/#{productAction.uid}" />
+        <view-id value="/product.xhtml" />
+    </url-mapping>
+    
+    
+    
+    
+
+</pretty-config>

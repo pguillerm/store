@@ -19,7 +19,9 @@ package org.foobar.store.model.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -48,7 +50,7 @@ public class Category implements Identifiable<String> {
     @NotEmpty
     private String            label;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(targetEntity = Product.class, mappedBy = "category")
     private List<Product>     products;
 
     // =========================================================================

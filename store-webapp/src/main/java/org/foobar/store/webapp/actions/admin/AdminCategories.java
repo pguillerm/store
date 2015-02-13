@@ -53,8 +53,6 @@ public class AdminCategories implements Serializable {
     @Inject
     private CategoryService     categoryService;
 
-    private List<Category>      categories;
-
     private Category            category;
 
     // =========================================================================
@@ -63,8 +61,6 @@ public class AdminCategories implements Serializable {
     @PostConstruct
     public void init() throws DaoException {
         category = new Category();
-        categories = categoryService.findAll(Category.class);
-        LOGGER.info("dao : {}", categories);
     }
 
     // =========================================================================
@@ -81,8 +77,8 @@ public class AdminCategories implements Serializable {
     // =========================================================================
     // GETTERS & SETTERS
     // =========================================================================
-    public List<Category> getCategories() {
-        return categories;
+    public List<Category> getCategories() throws DaoException {
+        return categoryService.findAll(Category.class);
     }
 
     public Category getCategory() {

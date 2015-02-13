@@ -1,6 +1,4 @@
 /*
- *   PALO IT source code:
- *   ======================
  *   Licensed to the Apache Software Foundation (ASF) under one or more
  *   contributor license agreements.  See the NOTICE file distributed with
  *   this work for additional information regarding copyright ownership.
@@ -16,15 +14,14 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Links:
- *   ======
- *   Git      : https://github.com/Palo-IT/Devoxx2014Raspberry
  */
 package org.foobar.store.webapp.actions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,41 +30,67 @@ import org.foobar.store.commons.exceptions.DaoException;
 import org.foobar.store.model.entities.Category;
 import org.foobar.store.model.entities.Product;
 import org.foobar.store.services.catergory.CategoryService;
-import org.foobar.store.services.product.ProductService;
 
 /**
- * HomeAction
+ * CategoryAction
  * 
  * @author pguillerm
- * @since 1 févr. 2015
+ * @since 13 févr. 2015
  */
 @RequestScoped
 @Named
-public class HomeAction implements Serializable {
-
+public class CategoryAction implements Serializable {
     // =========================================================================
     // ATTRIBUTES
     // =========================================================================
-    private static final long serialVersionUID = 1245407110480864441L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1711463293584136564L;
 
     @Inject
     private CategoryService   categoryService;
 
-    @Inject
-    private ProductService    productService;
+    private String            category;
+
+    // =========================================================================
+    // CONSTRUCTORS
+    // =========================================================================
+    public void init() throws DaoException {
+        if (category != null) {
+
+        }
+    }
+
+    // =========================================================================
+    // METHODS
+    // =========================================================================
+
+    // =========================================================================
+    // OVERRIDES
+    // =========================================================================
 
     // =========================================================================
     // GETTERS & SETTERS
     // =========================================================================
-    public List<Category> getCategories() throws DaoException {
-        return categoryService.findAll(Category.class);
+
+    public List<Product> getProducts() throws DaoException {
+
+        Category currentCategory = categoryService.getByUid(Category.class, category);
+
+        if (currentCategory == null) {
+            return new ArrayList<>();
+        } else {
+            return currentCategory.getProducts();
+        }
+
     }
-    
-    public List<Product> getSelectedProducts(){
-        return productService.getSelectedProducts();
+
+    public String getCategory() {
+        return category;
     }
-    
-    public List<Product> getBestSellerProducts(){
-        return productService.getBestSellerProducts();
+
+    public void setCategory(String category) throws DaoException {
+        this.category = category;
+        init();
     }
+
 }

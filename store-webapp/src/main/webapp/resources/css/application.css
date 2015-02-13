@@ -1,3 +1,14 @@
 .app .jumbotron {
 	margin-top: 64px;	
 }
+
+
+.app form.input-data label{
+	width: 128px;
+}
+
+.app form.input-data input[type=text],
+.app form.input-data select{
+	width: 33%;
+}
+

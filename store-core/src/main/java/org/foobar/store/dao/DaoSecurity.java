@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.foobar.store.commons.dao.Dao;
 import org.foobar.store.commons.dao.Identifiable;
@@ -35,7 +34,6 @@ import org.foobar.store.commons.security.roles.Admin;
  * @author pguillerm
  * @since 13 févr. 2015
  */
-@Named
 public class DaoSecurity implements Serializable {
 
     // =========================================================================
