@@ -51,14 +51,6 @@ public class CategoryAction implements Serializable {
 
     private String            category;
 
-    // =========================================================================
-    // CONSTRUCTORS
-    // =========================================================================
-    public void init() throws DaoException {
-        if (category != null) {
-
-        }
-    }
 
     // =========================================================================
     // METHODS
@@ -90,7 +82,6 @@ public class CategoryAction implements Serializable {
 
     public void setCategory(String category) throws DaoException {
         this.category = category;
-        init();
     }
 
 }

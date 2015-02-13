@@ -91,6 +91,10 @@
     					<h:outputText value="#{item.description}" escape="false"/>
 					</p:dialog>
 	    		</p:column>
+	    		
+	    		<p:column headerText="Actions">
+	    			<h:commandButton id="deleteAction" value="#{msg['admin.add.product.form.action.delete']}"  action="#{adminProducts.delete(item)}"/>
+	    		</p:column>
 			</p:dataTable>
 		</h:form>
 	

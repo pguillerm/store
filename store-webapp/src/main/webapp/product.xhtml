@@ -16,10 +16,14 @@
     ******************************************************************-->
 	</ui:remove>
 	<ui:define name="content_head">
-		Product
-		<h2>
-			<h:outputText value="#{productAction.uid}" />
+		<h2 id="#{productAction.product.uid}">
+			<h:outputText value="#{productAction.product.label}" />
 		</h2>
+		<h3 class="price">
+			<h:outputText value="#{productAction.product.price}" >
+				<f:convertNumber type="currency" currencySymbol="€"/>
+			</h:outputText>
+		</h3>
 	</ui:define>
 	
 	
@@ -31,10 +35,7 @@
 	</ui:remove>
 	<ui:define name="main-content">
 	
-		
-	
-	
-	
+		<h:outputText value="#{productAction.product.description}" escape="false"/>
 	
 	</ui:define>
 	

@@ -20,9 +20,12 @@ package org.foobar.store.webapp.actions;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.foobar.store.commons.exceptions.DaoException;
 import org.foobar.store.model.entities.Product;
+import org.foobar.store.services.product.ProductService;
 
 /**
  * CategoryAction
@@ -40,6 +43,9 @@ public class ProductAction implements Serializable {
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -2254279521108406661L;
 
+    @Inject
+    private ProductService    productService;
+
     private Long              uid;
 
     private Product           product;
@@ -47,6 +53,11 @@ public class ProductAction implements Serializable {
     // =========================================================================
     // CONSTRUCTORS
     // =========================================================================
+    private void init() throws DaoException {
+        if (uid != null) {
+            product = productService.getByUid(Product.class, uid);
+        }
+    }
 
     // =========================================================================
     // METHODS
@@ -63,8 +74,9 @@ public class ProductAction implements Serializable {
         return uid;
     }
 
-    public void setUid(Long uid) {
+    public void setUid(Long uid) throws DaoException {
         this.uid = uid;
+        init();
     }
 
     public Product getProduct() {

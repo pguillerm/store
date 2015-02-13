@@ -80,10 +80,15 @@ public class AdminProducts implements Serializable {
         return JsfUtils.getInstance().sendPostRedirectGet();
     }
 
+    public String delete(final Product product) throws DaoException {
+        productService.delete(product);
+        return JsfUtils.getInstance().sendPostRedirectGet();
+    }
+
     // =========================================================================
     // GETTERS & SETTERS
     // =========================================================================
-    
+
     public List<Category> getCategories() throws DaoException {
         return categoryService.findAll(Category.class);
     }
