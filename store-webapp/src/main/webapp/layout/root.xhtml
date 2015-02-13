@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        contentType="text/html"
+        id="usage">
+        
+        
+        
+        <!--
+        ========================================================================
+        = HEAD
+        ========================================================================        
+        -->
+        <h:head id="head">
+        	<meta charset="UTF-8" />
+            <meta http-equiv="Content-Type" content="application/xhtml+xml" />
+            <meta http-equiv="imagetoolbar" content="no" />
+            
+            <title>#{msg['application.name']} <ui:insert name="title" /></title>
+            
+            <h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+            
+        
+            <h:outputStylesheet library="bootstrap/fonts" name="bootstrap-font.css"  />
+        	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css"  />
+            <h:outputStylesheet library="bootstrap/css" name="bootstrap-theme.min.css"  />
+            <h:outputStylesheet library="css" name="application.css"  />
+            
+            <ui:insert name="head_imports" />
+        </h:head>
+        
+        
+        
+        <!--
+        ========================================================================
+        = BODY
+        ========================================================================        
+        -->
+        <h:body id="body">
+        	<div class="app">
+        
+	        	<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+	            + HEADER
+	            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	            <header>
+	            	<ui:insert name="head_menu" />
+	            </header>
+	        
+	        	<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+	            + BODY
+	            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	            <ui:insert name="body" />
+        	</div>
+        
+        	<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+	        + SCRIPTS
+	        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	        <h:outputScript library="bootstrap/js" name="bootstrap.min.js" target="body"/>
+	        <h:outputScript library="js" name="application.js" target="body"/>
+	        
+	        
+        	
+        </h:body>
+        
+        
+</f:view>

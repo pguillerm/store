@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--========================================================================
+    = PARENT
+    =========================================================================-->
+    <parent>
+        <groupId>org.foobar.store</groupId>
+        <artifactId>store-reactor</artifactId>
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+
+  <!--
+    ============================================================================
+    = PROJECT PROPERTIES
+    ============================================================================
+  -->
+    <artifactId>store-core</artifactId>
+    <packaging>jar</packaging>
+
+
+  <!--
+    ============================================================================
+    = DEPENDENCIES
+    ============================================================================
+  -->
+    <dependencies>
+        <dependency>
+            <groupId>org.foobar.store</groupId>
+            <artifactId>store-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+</project>

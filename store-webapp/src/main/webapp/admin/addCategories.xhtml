@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	id="home"
+	template="/layout/adminLayout.xhtml">
+
+	<ui:define name="title">Adminitration</ui:define>
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="content_head">
+	
+	<h1>#{msg['admin.add.categories.title']}</h1>
+	
+	</ui:define>
+	
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="main_content">
+	
+	<h:form id="form_add_categories">
+		
+		<div>
+			<h:outputLabel id="uid_label" for="uid" value="Key" />
+			<h:inputText id="uid" value="#{adminCategories.category.uid}" />
+		</div>
+		
+		<div>
+			<h:outputLabel id="label_label" for="label" value="Label" />
+			<h:inputText id="label" value="#{adminCategories.category.label}" />
+		</div>
+	
+		<div>
+			<h:commandButton value="Add"  action="#{adminCategories.save()}"/>
+		</div>
+	</h:form>
+	
+	
+	
+	<h:form id="show_categories">
+		<p:dataTable id="table_categories" var="item" value="#{adminCategories.categories}">
+			<p:column headerText="Id">
+        		<h:outputText value="#{item.uid}" />
+    		</p:column>
+    		
+    		<p:column headerText="Label">
+        		<h:outputText value="#{item.label}" />
+    		</p:column>
+		</p:dataTable>
+	</h:form>
+	
+	</ui:define>
+	
+	
+</ui:composition>

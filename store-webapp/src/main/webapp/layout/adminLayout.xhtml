@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" id="home"
+	template="root.xhtml">
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** BODY
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="head_imports">
+		<h:outputStylesheet library="css" name="admin-application.css"  />
+	</ui:define>
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** BODY
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="head_menu">
+
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container">
+	      	<ui:include src="menus/menu.xhtml" />
+	      </div>
+		</nav>
+
+	</ui:define>
+	
+	
+		
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** BODY
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="body">
+		<div class="admin" role="main">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<ui:include src="menus/admin_menu.xhtml" />
+				</div>
+				
+				<div class="col-md-10">
+					<div class="content-head">
+						<ui:insert name="content_head" />
+					</div>
+					
+					<div class="main-content">
+						<ui:insert name="main_content" />
+					</div>
+				</div>
+			  
+			</div>
+
+		</div>
+	</ui:define>
+	
+	
+</ui:composition>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+    
+    <!-- =======================================================================
+    = WEB APP CONFIG
+    ======================================================================== -->
+    <display-name>store</display-name>
+    
+    
+    
+    <!-- =======================================================================
+    = JSF CONFIG
+    ======================================================================== -->
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+
+
+    <context-param>
+        <param-name>com.sun.faces.compressableMimeTypes</param-name>
+        <param-value>text/css,text/javascript,application/json</param-value>
+    </context-param>
+
+
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>com.sun.faces.defaultResourceMaxAge</param-name>
+        <param-value>604800</param-value>
+    </context-param>
+
+    <env-entry>
+        <env-entry-name>jsf/ClientSideSecretKey</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <!-- .... override client Secret Key .... -->
+        <env-entry-value>T2hoaGhoaGhGb29iYXI=</env-entry-value>
+    </env-entry>
+    
+    
+    
+    <!-- =======================================================================
+    = PRIMEFACES
+    ======================================================================== -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+
+
+    <!-- =======================================================================
+    = SERVLET CONFIG
+    ======================================================================== -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <mime-mapping>
+        <extension>png</extension>
+        <mime-type>image/png</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>xhtml</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/x-font-ttf</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+</web-app>

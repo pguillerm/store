@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	id="home"
+	template="/layout/adminLayout.xhtml">
+
+	<ui:define name="title">Adminitration</ui:define>
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="content_head">
+	
+	<h1>#{msg['admin.add.product.title']}</h1>
+	
+	</ui:define>
+	
+	
+	
+	<ui:remove>
+	<!--*****************************************************************
+    ** content_head
+    ******************************************************************-->
+	</ui:remove>
+	<ui:define name="main_content">
+		
+		<h:form id="form_add_product">
+			
+			<div>
+				<h:outputLabel id="label_label" for="label" value="#{msg['admin.add.product.form.label']}" />
+				<h:inputText id="label" value="#{adminProducts.product.label}" />
+				<p:message for="label" />
+			</div>
+			
+			<div>
+				<h:outputLabel id="category_label" for="category" value="#{msg['admin.add.product.form.category']}" />
+				<h:selectOneMenu id="category" value="#{adminProducts.product.category}">
+					<f:selectItems value="#{adminProducts.categories}" var="c" itemValue="#{c}" itemLabel="#{c.label}"/>
+					<f:converter converterId="CategoryConverter"/>
+				</h:selectOneMenu>
+				<p:message for="category" />
+			</div>
+			
+			<div>
+				<h:outputLabel id="price_label" for="label" value="#{msg['admin.add.product.form.price']}" />
+				<h:inputText id="price" value="#{adminProducts.product.price}" >
+					<f:convertNumber type="number"/>
+				</h:inputText>
+				<p:message for="price" />
+			</div>
+			
+			<div>
+				<h:outputLabel id="description_label" for="description" value="#{msg['admin.add.product.form.description']}" />
+				<p:message for="description" />
+				<p:editor id="description" widgetVar="editorWidget" value="#{adminProducts.product.description}" width="600" />
+			</div>
+		
+			<div>
+				<h:commandButton id="addAction" value="#{msg['admin.add.product.form.action.add']}"  action="#{adminProducts.add()}"/>
+			</div>
+		</h:form>
+	
+	
+	
+		<h:form id="show_products">
+			<p:dataTable id="table_products" var="item" value="#{adminProducts.products}">
+				<p:column headerText="Id">
+	        		<h:outputText value="#{item.uid}" />
+	    		</p:column>
+	    		
+	    		<p:column headerText="Label">
+	        		<h:outputText value="#{item.label}" />
+	    		</p:column>
+	    		
+	    		<p:column headerText="Price">
+	        		<h:outputText value="#{item.price}" >
+	        			<f:convertNumber type="currency" currencySymbol="€"/>
+	        		</h:outputText>
+	    		</p:column>
+	    		
+	    		<p:column headerText="Description">
+	        		<p:commandButton value="description" type="button" onclick="PF('#{item.uid}_popup').show();" />
+	        		
+	        		<p:dialog header="#{item.label} Description" widgetVar="#{item.uid}_popup"  modal="true" height="512" width="768">
+    					<h:outputText value="#{item.description}" escape="false"/>
+					</p:dialog>
+	    		</p:column>
+			</p:dataTable>
+		</h:form>
+	
+	
+	</ui:define>
+	
+	
+</ui:composition>
