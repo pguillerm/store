@@ -18,19 +18,27 @@
 package org.foobar.store.webapp.actions.admin;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.foobar.store.commons.exceptions.DaoException;
 import org.foobar.store.commons.utils.JsfUtils;
 import org.foobar.store.model.entities.Category;
+import org.foobar.store.model.entities.Picture;
 import org.foobar.store.model.entities.Product;
 import org.foobar.store.services.catergory.CategoryService;
+import org.foobar.store.services.pictures.PicturesService;
 import org.foobar.store.services.product.ProductService;
+import org.foobar.store.webapp.jsf.JsfMessageService;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.webapp.MultipartRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +48,7 @@ import org.slf4j.LoggerFactory;
  * @author pguillerm
  * @since 1 févr. 2015
  */
-@ViewScoped
+@SessionScoped
 @Named
 public class AdminProducts implements Serializable {
 
@@ -58,7 +66,15 @@ public class AdminProducts implements Serializable {
     @Inject
     private CategoryService     categoryService;
 
+    @Inject
+    private PicturesService     picturesService;
+
+    @Inject
+    private JsfMessageService   jsfMessage;
+
     private Product             product;
+
+    private List<Picture>       pictures         = new ArrayList<>();
 
     // =========================================================================
     // CONSTRUCTORS
@@ -83,6 +99,23 @@ public class AdminProducts implements Serializable {
     public String delete(final Product product) throws DaoException {
         productService.delete(product);
         return JsfUtils.getInstance().sendPostRedirectGet();
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        //@formatter:off
+      Picture pic = null;
+      try {
+          pic = picturesService.saveFromFile(event.getFile().getContents(),
+                                                           event.getFile().getContentType(),
+                                                           event.getFile().getFileName());
+      } catch (DaoException e) {
+          jsfMessage.addMessageError("error in uploading file");
+      }
+      //@formatter:on
+
+        if (pic != null) {
+            pictures.add(pic);
+        }
     }
 
     // =========================================================================

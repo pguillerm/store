@@ -19,6 +19,7 @@ package org.foobar.store.commons.exceptions;
 
 /**
  * The Class DaoException.
+ * 
  * @author pguillerm
  * @since 13 févr. 2015
  */

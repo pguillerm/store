@@ -30,7 +30,7 @@
 	</ui:remove>
 	<ui:define name="main_content">
 		
-		<h:form id="form_add_product" styleClass="input-data">
+		<h:form id="form_add_product" styleClass="input-data" enctype="multipart/form-data">
 			
 			<div>
 				<h:outputLabel id="label_label" for="label" value="#{msg['admin.add.product.form.label']}" />
@@ -59,6 +59,13 @@
 				<h:outputLabel id="description_label" for="description" value="#{msg['admin.add.product.form.description']}" />
 				<p:message for="description" />
 				<p:editor id="description" widgetVar="editorWidget" value="#{adminProducts.product.description}" width="600" />
+			</div>
+			
+			<div>
+				<h:outputLabel id="pictures_label" for="pictures" value="#{msg['admin.add.product.form.pictures']}" />
+
+<p:fileUpload fileUploadListener="#{adminProducts.handleFileUpload}" mode="advanced" dragDropSupport="false" 
+                          multiple="true" update="form_add_product" sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 			</div>
 		
 			<div>

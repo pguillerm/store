@@ -17,67 +17,52 @@
  */
 package org.foobar.store.model.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.foobar.store.commons.dao.Identifiable;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Product
+ * Picture
  * 
  * @author pguillerm
- * @since 1 févr. 2015
+ * @since 15 févr. 2015
  */
 @Entity
-public class Product implements Identifiable<Long> {
+public class Picture implements Identifiable<Long> {
 
     // =========================================================================
     // ATTRIBUTES
     // =========================================================================
     /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 7919149490938106258L;
+    private static final long serialVersionUID = -1527056324232626967L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long              uid;
 
-    @NotEmpty
-    private String            label;
+    private String            type;
+
+    private String            name;
 
     @Lob
-    private String            description;
-
-    @OneToMany(targetEntity = Picture.class)
-    private List<Picture>     pictures;
-
-    private Double            price;
-
-    @ManyToOne
-    @JoinColumn(name = "CATEGORY_ID", nullable = false)
-    private Category          category;
+    private String            content;
 
     // =========================================================================
-    // CONSTRUCTORS
+    // OVERRIDES
     // =========================================================================
-    public Product() {
+    public Picture() {
         super();
     }
 
-    public Product(String label, String description, Double price, Category category) {
+    public Picture(String hexa, String contentType, String name) {
         super();
-        this.label = label;
-        this.description = description;
-        this.price = price;
-        this.category = category;
+        this.content = hexa;
+        this.type = contentType;
+        this.name = name;
     }
 
     // =========================================================================
@@ -107,16 +92,9 @@ public class Product implements Identifiable<Long> {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Product [uid=" + uid + ", label=" + label + ", description=" + description + ", price=" + price
-                + ", category=" + category + "]";
-    }
-
     // =========================================================================
     // GETTERS & SETTERS
     // =========================================================================
-
     @Override
     public Long getUid() {
         return uid;
@@ -132,36 +110,28 @@ public class Product implements Identifiable<Long> {
         return uid != null;
     }
 
-    public String getLabel() {
-        return label;
+    public String getType() {
+        return type;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
