@@ -24,8 +24,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.foobar.store.commons.exceptions.DaoException;
+import org.foobar.store.model.entities.Picture;
 import org.foobar.store.model.entities.Product;
 import org.foobar.store.services.product.ProductService;
+import org.foobar.store.webapp.actions.exceptions.Http404Exception;
 
 /**
  * CategoryAction
@@ -53,19 +55,28 @@ public class ProductAction implements Serializable {
     // =========================================================================
     // CONSTRUCTORS
     // =========================================================================
-    private void init() throws DaoException {
+    private void init() throws DaoException, Http404Exception {
         if (uid != null) {
             product = productService.getByUid(Product.class, uid);
+
+            if (product == null) {
+                throw new Http404Exception("Product not found");
+            }
         }
     }
 
-    // =========================================================================
-    // METHODS
-    // =========================================================================
+    public String getMainImage() {
+        StringBuilder result = new StringBuilder();
 
-    // =========================================================================
-    // OVERRIDES
-    // =========================================================================
+        if (product.getPictures() != null && !product.getPictures().isEmpty()) {
+            final Picture firstPicture = product.getPictures().get(0);
+            result.append("data:");
+            result.append(firstPicture.getType());
+            result.append(";base64,");
+            result.append(firstPicture.getContent());
+        }
+        return result.toString();
+    }
 
     // =========================================================================
     // GETTERS & SETTERS
@@ -74,7 +85,7 @@ public class ProductAction implements Serializable {
         return uid;
     }
 
-    public void setUid(Long uid) throws DaoException {
+    public void setUid(Long uid) throws DaoException, Http404Exception {
         this.uid = uid;
         init();
     }

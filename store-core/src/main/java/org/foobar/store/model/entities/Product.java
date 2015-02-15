@@ -17,6 +17,7 @@
  */
 package org.foobar.store.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -162,6 +163,25 @@ public class Product implements Identifiable<Long> {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public Product addPicture(final Picture picture) {
+        if (picture != null) {
+            if (pictures == null) {
+                pictures = new ArrayList<>();
+            }
+            pictures.add(picture);
+
+        }
+        return this;
     }
 
 }

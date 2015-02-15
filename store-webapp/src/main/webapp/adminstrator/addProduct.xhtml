@@ -35,7 +35,7 @@
 			<div>
 				<h:outputLabel id="label_label" for="label" value="#{msg['admin.add.product.form.label']}" />
 				<h:inputText id="label" value="#{adminProducts.product.label}" />
-				<p:message for="label" />
+				<p:message for="label" id="label_error"/>
 			</div>
 			
 			<div>
@@ -44,7 +44,7 @@
 					<f:selectItems value="#{adminProducts.categories}" var="c" itemValue="#{c}" itemLabel="#{c.label}"/>
 					<f:converter converterId="CategoryConverter"/>
 				</h:selectOneMenu>
-				<p:message for="category" />
+				<p:message for="category" id="category_error"/>
 			</div>
 			
 			<div>
@@ -52,7 +52,7 @@
 				<h:inputText id="price" value="#{adminProducts.product.price}" >
 					<f:convertNumber type="number"/>
 				</h:inputText>
-				<p:message for="price" />
+				<p:message for="price" id="price_error" />
 			</div>
 			
 			<div>
@@ -64,8 +64,41 @@
 			<div>
 				<h:outputLabel id="pictures_label" for="pictures" value="#{msg['admin.add.product.form.pictures']}" />
 
-<p:fileUpload fileUploadListener="#{adminProducts.handleFileUpload}" mode="advanced" dragDropSupport="false" 
-                          multiple="true" update="form_add_product" sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+				<p:fileUpload id="pictures"
+							  fileUploadListener="#{adminProducts.handleFileUpload}"
+							  mode="advanced"
+							  dragDropSupport="true" 
+                              multiple="true"
+                              update="image_display"
+                              sizeLimit="1000000"
+                              fileLimit="3"
+                              auto="true"
+                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                <p:message for="pictures" id="pictures_error"/>
+                
+                <div>
+                	<p:panel id="image_display" styleClass="image-display">
+                		<ul class="images-diplay-form">
+	                		<ui:repeat  id="images_diplay_list" var="img" value="#{adminProducts.pictures}">
+	                			<li>
+	                				<div class="img">
+		                				<div class="img-image"><img src="data:#{img.type};base64,#{img.content}" /></div>
+		                				<div class="img-name">#{img.name}</div>
+	                				</div>
+	                				<div class="img-action">
+	                					<h:commandLink  id="delete"
+	                									action="#{adminProducts.deleteImage(img)}"
+	                									value="delete"
+	                									styleClass="btn btn-default btn-danger">
+	                							<p:ajax  update="@(.image-display)" />
+										</h:commandLink>
+	                				</div>
+	                				<div class="clear"></div>
+	                			</li>
+	                		</ui:repeat>
+                		</ul>
+                	</p:panel>
+                </div>
 			</div>
 		
 			<div>

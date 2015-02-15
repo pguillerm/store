@@ -19,7 +19,7 @@ package org.foobar.store.services.pictures;
 
 import javax.inject.Named;
 
-import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.binary.Base64;
 import org.foobar.store.commons.exceptions.DaoException;
 import org.foobar.store.dao.DaoSecurity;
 import org.foobar.store.model.entities.Picture;
@@ -49,7 +49,8 @@ public class PicturesService extends DaoSecurity {
             throw new DaoException("content or content type mustn't be null !");
         }
 
-        final String hexa = new String(Hex.encodeHex(content));
+        
+        final String hexa = new String(Base64.encodeBase64(content));
 
         final Picture picture = new Picture(hexa, contentType, name);
 

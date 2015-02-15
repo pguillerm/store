@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.component.UIComponent;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -38,7 +38,6 @@ import org.foobar.store.services.pictures.PicturesService;
 import org.foobar.store.services.product.ProductService;
 import org.foobar.store.webapp.jsf.JsfMessageService;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.webapp.MultipartRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +47,7 @@ import org.slf4j.LoggerFactory;
  * @author pguillerm
  * @since 1 févr. 2015
  */
-@SessionScoped
+@ViewScoped
 @Named
 public class AdminProducts implements Serializable {
 
@@ -91,6 +90,7 @@ public class AdminProducts implements Serializable {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("save product : {}", product);
         }
+        product.setPictures(pictures);
         productService.save(product);
         init();
         return JsfUtils.getInstance().sendPostRedirectGet();
@@ -101,18 +101,26 @@ public class AdminProducts implements Serializable {
         return JsfUtils.getInstance().sendPostRedirectGet();
     }
 
-    public void handleFileUpload(FileUploadEvent event) {
-        //@formatter:off
-      Picture pic = null;
-      try {
-          pic = picturesService.saveFromFile(event.getFile().getContents(),
-                                                           event.getFile().getContentType(),
-                                                           event.getFile().getFileName());
-      } catch (DaoException e) {
-          jsfMessage.addMessageError("error in uploading file");
-      }
-      //@formatter:on
+    public void deleteImage(final Picture picture) throws DaoException {
+        if (picture != null) {
+            long uid = picture.getUid();
 
+            pictures.remove(picture);
+            picturesService.delete(picture);
+        }
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        Picture pic = null;
+        try {
+            //@formatter:off
+          pic = picturesService.saveFromFile(event.getFile().getContents(),
+                                             event.getFile().getContentType(),
+                                             event.getFile().getFileName());
+          //@formatter:on
+        } catch (DaoException e) {
+            jsfMessage.addMessageError(((UIComponent) event.getSource()).getClientId(), "error in uploading file");
+        }
         if (pic != null) {
             pictures.add(pic);
         }
@@ -136,6 +144,14 @@ public class AdminProducts implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 
 }

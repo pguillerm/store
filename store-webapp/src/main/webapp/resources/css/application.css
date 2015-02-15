@@ -1,14 +1,59 @@
 .app .jumbotron {
-	margin-top: 64px;	
+	margin-top: 64px;
 }
 
-
-.app form.input-data label{
+.app form.input-data label {
 	width: 128px;
 }
 
-.app form.input-data input[type=text],
-.app form.input-data select{
+.app form.input-data input[type=text], .app form.input-data select {
 	width: 33%;
 }
 
+.app .clear {
+	clear: both;
+}
+
+.app .images-diplay-form li:AFTER {
+	clear: both;
+}
+
+.app .images-diplay-form .img {
+	float: left;
+}
+
+.app .images-diplay-form .img-image img {
+	width: 256px;
+}
+
+.app .images-diplay-form .img-name {
+	margin: auto;
+	width: 256px;
+	text-align: center;
+}
+
+.app .images-diplay-form .img-action {
+	float: left;
+	margin-left: 12px;
+}
+
+.app .images-diplay-form .img-action a {
+	color: #ffffff;
+}
+
+/*******************************************************************************
+PRODUCT
+*******************************************************************************/
+.app .jumbotron .title{
+	float: left;
+}
+
+.app .jumbotron .image-product,
+.app .jumbotron .image-product img {
+	width: 256px;
+	float: right;
+}
+
+.app .ui-carousel .ui-carousel-header{
+	height: 40px;
+}

@@ -15,6 +15,8 @@
             <default-locale>en</default-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
+
+       
     </application>
 
 </faces-config>

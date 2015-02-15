@@ -7,7 +7,7 @@
 	id="home"
 	template="/layout/main.xhtml">
 
-	<ui:define name="title">Home</ui:define>
+	<ui:define name="title">#{productAction.product.label}</ui:define>
 	
 	
 	<ui:remove>
@@ -16,14 +16,22 @@
     ******************************************************************-->
 	</ui:remove>
 	<ui:define name="content_head">
-		<h2 id="#{productAction.product.uid}">
-			<h:outputText value="#{productAction.product.label}" />
-		</h2>
-		<h3 class="price">
-			<h:outputText value="#{productAction.product.price}" >
-				<f:convertNumber type="currency" currencySymbol="€"/>
-			</h:outputText>
-		</h3>
+		<div class="title">
+			<h2 id="#{productAction.product.uid}">
+				<h:outputText value="#{productAction.product.label}" />
+			</h2>
+			<h3 class="price">
+				<h:outputText value="#{productAction.product.price}" >
+					<f:convertNumber type="currency" currencySymbol="€"/>
+				</h:outputText>
+			</h3>
+		</div>
+		
+		
+		<div class="image-product">
+			<img src="#{productAction.mainImage}"/>
+		</div>
+		<div class="clear"></div>
 	</ui:define>
 	
 	
@@ -36,8 +44,22 @@
 	<ui:define name="main-content">
 	
 		<h:outputText value="#{productAction.product.description}" escape="false"/>
-	
+		
+		<p:carousel id="carousel"
+					value="#{productAction.product.pictures}"
+					var="picture"
+					numVisible="1"
+					headerText="Images"
+					itemStyleClass="picture-carousel">
+					<div class="image-content">
+						<img src="data:#{picture.type};base64,#{picture.content}" />
+					</div>
+		</p:carousel>
+		
+		
 	</ui:define>
+	
+
 	
 	
 </ui:composition>
