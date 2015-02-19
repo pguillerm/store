@@ -35,15 +35,17 @@
 		<div>
 			<h:outputLabel id="uid_label" for="uid" value="Key" />
 			<h:inputText id="uid" value="#{adminCategories.category.uid}" />
+			<p:message for="uid" id="uid_error"/>
 		</div>
 		
 		<div>
 			<h:outputLabel id="label_label" for="label" value="Label" />
 			<h:inputText id="label" value="#{adminCategories.category.label}" />
+			<p:message for="label" id="label_error"/>
 		</div>
 	
 		<div>
-			<h:commandButton value="Add"  action="#{adminCategories.save()}"/>
+			<p:commandButton  id="save" action="#{adminCategories.save()}" update=":show_categories" value="Add" styleClass="btn btn-success"/>
 		</div>
 	</h:form>
 	

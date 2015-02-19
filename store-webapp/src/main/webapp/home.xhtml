@@ -16,7 +16,7 @@
     ******************************************************************-->
 	</ui:remove>
 	<ui:define name="content_head">
-		
+		<h1 id="title">home</h1>
 	</ui:define>
 	
 	
@@ -30,30 +30,34 @@
 	
 	
 	<f:subview id="categories">
-	<h2>Categories</h2>
-	<ul class="categories">
-		<ui:repeat var="category" value="#{homeAction.categories}">
-			<li>
-				<a href="#{request.contextPath}/home/#{category.uid}">
-					<h:outputText value="#{category.label}" />
-				</a>
-			</li>		
-		</ui:repeat>
-	</ul>	
+		<div id="categories">
+			<h2>Categories</h2>
+			<ul class="categories">
+				<ui:repeat var="category" value="#{homeAction.categories}" >
+					<li id="#{category.uid}">
+						<a href="#{request.contextPath}/home/#{category.uid}">
+							<h:outputText value="#{category.label}" />
+						</a>
+					</li>		
+				</ui:repeat>
+			</ul>	
+		</div>
 	</f:subview>	
 	
 	
 	<f:subview id="selected_product">
-		<h2>Selected</h2>
-		<ul class="selected-products">
-			<ui:repeat var="product" value="#{homeAction.selectedProducts}">
-				<li>
-					<a href="#{request.contextPath}/home/#{product.category.uid}/#{product.uid}">
-						<h:outputText value="#{product.label}" />
-					</a>
-				</li>		
-			</ui:repeat>
-		</ul>
+		<div id="selected">
+			<h2>Selected</h2>
+			<ul class="selected-products">
+				<ui:repeat var="product" value="#{homeAction.selectedProducts}">
+					<li>
+						<a href="#{request.contextPath}/home/#{product.category.uid}/#{product.uid}">
+							<h:outputText value="#{product.label}" />
+						</a>
+					</li>		
+				</ui:repeat>
+			</ul>
+		</div>
 	</f:subview>
 	
 	

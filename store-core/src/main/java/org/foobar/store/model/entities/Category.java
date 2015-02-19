@@ -24,6 +24,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.foobar.store.commons.dao.Identifiable;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -44,9 +45,11 @@ public class Category implements Identifiable<String> {
     private static final long serialVersionUID = 1276246335753875817L;
 
     @Id
+    @NotNull
     @NotEmpty
     private String            uid;
 
+    @NotNull
     @NotEmpty
     private String            label;
 

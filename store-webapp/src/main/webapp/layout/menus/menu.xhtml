@@ -20,7 +20,10 @@
 <f:subview id="navbar">
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav">
-	    <li class="active"><h:link id="home" value="Home" outcome="/home.xhtml" /></li>
+	    <li><h:link id="home" value="Home" outcome="/home.xhtml" /></li>
+	    <li>
+	    	<h:outputLink id="admin" value="#{request.contextPath}/admin/">Admin</h:outputLink>
+	    </li>
 	  </ul>
 	</div>
 </f:subview>
